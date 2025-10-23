@@ -3,6 +3,7 @@ package com.techbloom.smartrh.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.http.HttpStatus;
 
 import com.techbloom.smartrh.model.Colaborador;
+import com.techbloom.smartrh.records.CalculoSalarioRecords;
+import com.techbloom.smartrh.records.HoleriteRecords;
+import com.techbloom.smartrh.service.CalcularSalarioService;
 import com.techbloom.smartrh.service.ColaboradorService;
 
 import jakarta.validation.Valid;
@@ -30,6 +33,10 @@ public class ColaboradorController {
 	// Injeção de depedencia colaboradorService
 	@Autowired
 	private ColaboradorService colaboradorService;
+	
+	// Injeção de depedencia calcularSalarioService
+	@Autowired
+    private CalcularSalarioService calcularSalarioService;
 
 	// Buscar todos os colaboradores
 	@GetMapping
@@ -67,5 +74,15 @@ public class ColaboradorController {
 	public void delete(@PathVariable Long id) {
 		colaboradorService.delete(id);
 	}
+	
+	// Calcular salário colaborador
+	@PostMapping("/calcularsalario/{id}")
+    public ResponseEntity<HoleriteRecords> calcularSalario(
+            @PathVariable Long id,
+            @RequestBody CalculoSalarioRecords dadosSalario) {
+
+        HoleriteRecords holerite = calcularSalarioService.calcularSalario(id, dadosSalario);
+        return ResponseEntity.status(HttpStatus.OK).body(holerite);
+    }
 	
 }
