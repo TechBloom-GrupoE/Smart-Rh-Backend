@@ -11,5 +11,6 @@ public record HoleriteRecords(
 	    BigDecimal inss,
 	    BigDecimal irrf,
 	    BigDecimal totalDescontos,
-	    BigDecimal salarioLiquido
+	    BigDecimal salarioLiquido,
+	    String mensagem
 	    ) {}

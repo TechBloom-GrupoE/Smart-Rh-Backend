@@ -47,6 +47,7 @@ public class CalcularSalarioService {
 	 	 public HoleriteRecords calcularSalario(Long id, CalculoSalarioRecords dadosSalario) {
 	 		 
 	 		 Colaborador colaborador = buscarColaborador(id);
+	 		 String mensagem = "Outubro Rosa - Previna-se do câncer de mama!";
 
 	         // 2. Calcula valores básicos
 	         BigDecimal salarioPorHora = calcularSalarioPorHora(colaborador);
@@ -75,7 +76,8 @@ public class CalcularSalarioService {
 	             descontoINSS,
 	             descontoIRRF,
 	             totalDescontos,
-	             salarioLiquido
+	             salarioLiquido,
+	             mensagem
 	         );
 	 	 }
 	 	 
