@@ -42,7 +42,7 @@ A API foi construída seguindo o estilo arquitetural **RESTful**, expondo *endpo
 
 ## 3. Diagrama de Classes
 
- estrutura de classes separa as responsabilidades entre dados de RH (`Colaborador`) e dados de acesso (`Usuario`), com os seguintes relacionamentos: 
+ A estrutura de classes separa as responsabilidades entre dados de RH (`Colaborador`) e dados de acesso (`Usuario`), com os seguintes relacionamentos: 
 
 * **Departamento** se relaciona com **Colaborador** em um modelo $1:N$ (Um para Muitos). 
 * **Colaborador** possui a referência da conta **Usuario** em um modelo $1:1$, focando na separação das preocupações (Dados de RH vs. Dados de Acesso).
