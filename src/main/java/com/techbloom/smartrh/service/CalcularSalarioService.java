@@ -2,6 +2,8 @@ package com.techbloom.smartrh.service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,6 +40,26 @@ public class CalcularSalarioService {
 	 	        new FaixaImpostoRecords(Double.MAX_VALUE, 27.5, 917.24)
 	 	    );
 	 	 
+	 	public String gerarMensagemSazonal() {
+	        Month mesAtual = LocalDate.now().getMonth();
+
+	        return switch (mesAtual) {
+	            case JANUARY -> "Janeiro Branco - Cuide da saúde mental!";
+	            case FEBRUARY -> "Carnaval - Aproveite com responsabilidade!";
+	            case MARCH -> "Dia da Mulher - Valorize e respeite sempre!";
+	            case APRIL -> "Abril Verde - Segurança no trabalho!";
+	            case MAY -> "Dia das Mães - Homenagem especial!";
+	            case JUNE -> "Festas Juninas - Tradição e alegria!";
+	            case JULY -> "Férias - Aproveite com descanso!";
+	            case AUGUST -> "Dia dos Pais - Reconhecimento e carinho!";
+	            case SEPTEMBER -> "Setembro Amarelo - Prevenção ao suicídio!";
+	            case OCTOBER -> "Outubro Rosa - Previna-se do câncer de mama!";
+	            case NOVEMBER -> "Novembro Azul - Cuide da saúde do homem!";
+	            case DECEMBER -> "Boas festas e feliz ano novo!";
+	            default -> "Mantenha sua saúde em dia!";
+	        };
+	    }
+	 	 
 	 	 private static final BigDecimal DEDUCAO_DEPENDENTE = new BigDecimal("179.59");
 	 	 
 	 	 private static final BigDecimal PERCENTUAL_HORA_EXTRA = new BigDecimal("1.5");
@@ -47,7 +69,7 @@ public class CalcularSalarioService {
 	 	 public HoleriteRecords calcularSalario(Long id, CalculoSalarioRecords dadosSalario) {
 	 		 
 	 		 Colaborador colaborador = buscarColaborador(id);
-	 		 String mensagem = "Outubro Rosa - Previna-se do câncer de mama!";
+	 		 String mensagem = gerarMensagemSazonal();
 
 	         // 2. Calcula valores básicos
 	         BigDecimal salarioPorHora = calcularSalarioPorHora(colaborador);
